@@ -1,14 +1,22 @@
-import React, { useState } from 'react'
-
+import React from 'react'
+import { useState } from 'react'
 
 function App() {
-  const [Num,setNum] = useState(10);
-  return (
+  const [username,setUsername] = useState("")
+  const handleForm = (e)=>{
+    e.preventDefault()
+    console.log(username)
+    setUsername("")
 
-    <div>
-      <h1>Counter {Num}</h1>
-      <button onClick={()=>(setNum(Num-1))}>DEC</button>
-      <button onClick={()=>(setNum(Num+1))} >INC</button>
+  }
+  return (
+    <div className='h-screen w-full bg-gray-300'>
+      <form onSubmit={(e)=>{
+           handleForm(e)
+      }}>
+      <input type='text' value={username} onChange={(e)=>{setUsername(e.target.value)}} className='px-5 mx-10 border border-red-500 text-xl py-3 my-10' placeholder='Enter your name' />
+      <button className='px-6 py-4 rounded-xl text-white bg-green-500'>Submit</button>
+      </form>
     </div>
   )
 }
