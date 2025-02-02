@@ -3,7 +3,7 @@ import React from 'react'
 function Header() {
   return(
     <>
-    <nav className='flex justify-between py-5 px-5'>
+    <nav className='flex justify-between bg-amber-600 text-white items-center w-full h-5 py-5 px-5'>
         <div className='text-2xl font-bold '>
             <h1>Logo</h1>
         </div>
