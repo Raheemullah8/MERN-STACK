@@ -14,7 +14,7 @@ setPassword("")
   return (
    
     <div className='flex h-screen w-full justify-center items-center flex-wrap '>
-    <div className='border-2 border-emerald-400  px-30 py-30 flex-wrap rounded-4xl'>
+    <div className='border-2 border-emerald-400  px-30 py-30  rounded-4xl'>
     <form className='flex flex-col items-center justify-center' onSubmit={(e)=>{
         formHandler(e);
     }}>
