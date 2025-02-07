@@ -1,6 +1,6 @@
 import React from "react";
 
-function TaskList() {
+function CountTask() {
   return (
     <div className="flex gap-10 justify-evenly flex-wrap mt-10 ">
 
@@ -25,4 +25,4 @@ function TaskList() {
   );
 }
 
-export default TaskList;
+export default CountTask;
