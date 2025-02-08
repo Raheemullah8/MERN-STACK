@@ -1,9 +1,22 @@
-import React from 'react'
+import React, { createContext, useEffect, useState } from "react";
+import { getLocalStroge } from "../Utils/LacalStroge";
 
-function ContextProvider({children}) {
-  return (
-    <div>{children}</div>
-  )
+export const AuthContext = createContext();
+
+function ContextProvider({ children }) {
+
+  const [userdata, setUser] = useState(null);
+
+ useEffect(()=>{
+  const {admin,employees} = getLocalStroge();
+  setUser({admin,employees})
+
+},[])
+
+  return(
+     <AuthContext.Provider value={userdata}>
+     {children}
+  </AuthContext.Provider>)
 }
 
-export default ContextProvider
+export default ContextProvider;
