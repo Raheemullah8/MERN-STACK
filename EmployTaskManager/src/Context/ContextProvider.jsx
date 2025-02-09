@@ -1,7 +1,8 @@
 import React, { createContext, useEffect, useState } from "react";
-import { getLocalStroge } from "../Utils/LacalStroge";
+import { getLocalStroge, setLocalStroge } from "../Utils/LacalStroge";
 
 export const AuthContext = createContext();
+setLocalStroge();
 
 function ContextProvider({ children }) {
 
