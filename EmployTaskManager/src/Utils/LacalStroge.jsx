@@ -48,5 +48,8 @@ export const getLocalStroge = () => {
   const employees = JSON.parse(localStorage.getItem("employees"));
   const admin = JSON.parse(localStorage.getItem("admin"));
   console.log(employees, admin);
-  return (admin, employees);
+  
+  // Return both admin and employees in an object
+  return { admin, employees };
 };
+
