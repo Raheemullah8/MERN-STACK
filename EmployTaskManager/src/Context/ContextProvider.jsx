@@ -7,6 +7,7 @@ function ContextProvider({ children }) {
   const [userdata, setUserdata] = useState([]);
 
   useEffect(() => {
+    setLocalStroge();
     // Get data from localStorage
     const { admin, employees } = getLocalStroge();
     setUserdata({ admin, employees });

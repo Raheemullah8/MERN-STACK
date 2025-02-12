@@ -4,7 +4,6 @@ import EmployDashbord from "./Components/Dashbord/EmployDashbord";
 import AdminDashbord from "./Components/Dashbord/AdminDashbord";
 import { AuthContext } from "./Context/ContextProvider";
 
-
 function App() {
 
   const AuthData = useContext(AuthContext);
@@ -12,7 +11,7 @@ function App() {
 
   const [user, setUser] = useState(null);
   const [lodiginUser ,setLogdinUser] = useState(null)
-
+  
   const handleLogin = (email, password) => {
 
     if (email == "admin@me.com" && password == "123") {
@@ -20,10 +19,10 @@ function App() {
       localStorage.setItem("LogdinUser", JSON.stringify({role:'admin'}));
 
     } else if (AuthData) {
-      const employees = AuthData.employees.find((e)=>(email == e.email && e.password == password));
-      if(employees){
-        setLogdinUser(employees);
-        setUser({role:employees});
+      const employee = AuthData.employees.find((e)=>(email == e.email && e.password == password));
+      if(employee){
+        setLogdinUser(employee);
+        setUser('employee');
         localStorage.setItem("LogdinUser", JSON.stringify({role:'employee'}));
       }
       
@@ -36,7 +35,7 @@ function App() {
   return (
     <>
       {!user ? <Login handleLogin={handleLogin} /> : ""}
-      {user == "admin" ? <AdminDashbord /> : <EmployDashbord data={lodiginUser} />}
+      {user == "admin" ? <AdminDashbord /> : (user == 'employee' ?<EmployDashbord data={lodiginUser}/> : null ) }
     </>
   );
 }
