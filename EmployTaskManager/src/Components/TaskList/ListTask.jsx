@@ -1,56 +1,36 @@
-import React from 'react';
+import React from "react";
+import AcceptTask from "./AcceptTask";
+import NewTask from "./NewTask";
+import FailedTask from "./FailedTask";
+import CompleteTask from "./CompleteTask";
 
-
-function ListTask() {
+function ListTask({ data }) {
   return (
-    <div 
-      id='taskid' 
-      className='h-[55%] overflow-x-auto flex justify-start items-center   gap-5 w-full py-5  mt-10  flex-nowrap'
+    <div
+      id="taskid"
+      className="h-[55%] overflow-x-auto flex justify-start items-center   gap-5 w-full py-5  mt-10  flex-nowrap"
     >
-      <div className='h-full flex flex-col shrink-0 w-[300px] p-5 rounded-xl bg-red-400'>
-       <div className='flex w-full justify-between'>
-        <h3 ><span className='bg-red-500 rounded-2xl text-sm px-3 py-1 '>heigh</span></h3>
-        <h4 className='text-sm'>20 feb 2024</h4>
-       </div>
-       <h2 className='mt-5 text-2xl font-semibold'>
-          Make A youtube video
-       </h2>
-       <p className='text-sm mt-2'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
-       
-      </div>
-      <div className='h-full flex flex-col shrink-0 w-[300px] p-5 rounded-xl bg-green-400'>
-       <div className='flex w-full justify-between'>
-        <h3 ><span className='bg-red-500 rounded-2xl text-sm px-3 py-1 '>heigh</span></h3>
-        <h4 className='text-sm'>20 feb 2024</h4>
-       </div>
-       <h2 className='mt-5 text-2xl font-semibold'>
-          Make A youtube video
-       </h2>
-       <p className='text-sm mt-2'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
-       
-      </div>
-      <div className='h-full flex flex-col shrink-0 w-[300px] p-5 rounded-xl bg-yellow-400'>
-       <div className='flex w-full justify-between'>
-        <h3 ><span className='bg-red-500 rounded-2xl text-sm px-3 py-1 '>heigh</span></h3>
-        <h4 className='text-sm'>20 feb 2024</h4>
-       </div>
-       <h2 className='mt-5 text-2xl font-semibold'>
-          Make A youtube video
-       </h2>
-       <p className='text-sm mt-2'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
-       
-      </div>
-      <div className='h-full flex flex-col shrink-0 w-[300px] p-5 rounded-xl bg-blue-400'>
-       <div className='flex w-full justify-between'>
-        <h3 ><span className='bg-red-500 rounded-2xl text-sm px-3 py-1 '>heigh</span></h3>
-        <h4 className='text-sm'>20 feb 2024</h4>
-       </div>
-       <h2 className='mt-5 text-2xl font-semibold'>
-          Make A youtube video
-       </h2>
-       <p className='text-sm mt-2'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
-       
-      </div>
+     {data.tasks.map((task,idx) => {
+      
+    if (task.active) {
+        return <AcceptTask data={task} key={idx} />;
+    }
+
+    if (task.newTask) {
+        return <NewTask data={task} key={idx} />;
+    }
+
+    if (task.completed) {
+        return <CompleteTask data={task} key={idx} />;
+    }
+
+    if (task.failed) {
+        return <FailedTask data={task} key={idx} />;
+    }
+
+    return null; // Ensure that we always return something, even if no conditions are met
+})}
+
       
     </div>
   );

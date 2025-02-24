@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Login from "./Components/Auth/Login";
 import EmployDashbord from "./Components/Dashbord/EmployDashbord";
 import AdminDashbord from "./Components/Dashbord/AdminDashbord";
@@ -7,11 +7,17 @@ import { AuthContext } from "./Context/ContextProvider";
 function App() {
 
   const AuthData = useContext(AuthContext);
-  
-
   const [user, setUser] = useState(null);
   const [lodiginUser ,setLogdinUser] = useState(null)
-  
+
+  useEffect(()=>{
+     const employees = localStorage.getItem('LogdinUser');
+     if(employees){
+      const userData = JSON.parse(employees)
+      setUser(userData.role);
+      setLogdinUser(userData.data);
+     }
+  },[])
   const handleLogin = (email, password) => {
 
     if (email == "admin@me.com" && password == "123") {
@@ -23,7 +29,7 @@ function App() {
       if(employee){
         setLogdinUser(employee);
         setUser('employee');
-        localStorage.setItem("LogdinUser", JSON.stringify({role:'employee'}));
+        localStorage.setItem("LogdinUser", JSON.stringify({role:'employee',data:employee}));
       }
       
 
@@ -41,3 +47,4 @@ function App() {
 }
 
 export default App;
+
