@@ -1,9 +1,11 @@
 import React from 'react'
 
-function Header() {
+function Header(props) {
  const userLogout = ()=>{
     localStorage.setItem('LogdinUser','');
-    window.location.reload();
+    props.changeUser('')
+    
+   
  }
   return (
     <div className='flex item-center justify-between'>

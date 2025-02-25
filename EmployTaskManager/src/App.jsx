@@ -41,7 +41,7 @@ function App() {
   return (
     <>
       {!user ? <Login handleLogin={handleLogin} /> : ""}
-      {user == "admin" ? <AdminDashbord /> : (user == 'employee' ?<EmployDashbord data={lodiginUser}/> : null ) }
+      {user == "admin" ? <AdminDashbord changeUser={setUser} /> : (user == 'employee' ?<EmployDashbord changeUser={setUser} data={lodiginUser}/> : null ) }
     </>
   );
 }
