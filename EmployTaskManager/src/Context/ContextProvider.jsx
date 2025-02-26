@@ -8,13 +8,13 @@ function ContextProvider({ children }) {
 
   useEffect(() => {
     setLocalStroge();
-    // Get data from localStorage
-    const { admin, employees } = getLocalStroge();
-    setUserdata({ admin, employees });
+    
+    const { employees } = getLocalStroge();
+    setUserdata( employees );
   }, []);
 
   return (
-    <AuthContext.Provider value={userdata}>
+    <AuthContext.Provider value={[userdata, setUserdata]}>
       {children}
     </AuthContext.Provider>
   );

@@ -1,21 +1,39 @@
-import React, { useState } from 'react'
+
+import React, { useContext, useState } from 'react'
+import { AuthContext } from '../../Context/ContextProvider';
 
 function CreateTask() {
-  const [title,setTitle] = useState('');
-  const [empname,setEmpname] = useState('');
-  const [date,setDate] = useState('');
-  const [desc,setDesc] = useState('');
-  const [categ,setCateg] = useState('');
+  const [userdata, setUserdata] = useContext(AuthContext)
+  const [taskTitle,setTitle] = useState('');
+  const [taskDescription,setDesc] = useState('');
+  const [taskDate,setDate] = useState('');
+  const [asignTo,setAsignTo] = useState('');
+  const [category,setCategory] = useState('');
 
-  const [task,setTask] = useState([]);
+
+  const [newTask,setNewTask] = useState({})
   const submitHandler = (e)=>{
     e.preventDefault()
-    setTask({title,empname,date,desc,categ,active:false,newTask:true,faild:true,completed:false})
-    // setTitle('');
-    // setEmpname('');
-    // setDate('');
-    // setDesc('');
-    // setCateg('');
+    setNewTask({taskTitle,taskDescription,category,active:false,newTask:true,faild:false,completed:false})
+  
+    const data = userdata
+    
+    data.forEach((elm)=>{
+      if(asignTo == elm.firstName){
+        elm.tasks.push(newTask)
+        elm.taskCounts.newTask = elm.taskCounts.newTask+1
+
+      }
+
+    })
+    console.log(data)
+    
+    setTitle('');
+    setAsignTo('');
+    setDate('');
+    setDesc('');
+    setCategory('')
+   ;
     alert('Task Created Successfully')
   }
   return (
@@ -31,7 +49,7 @@ function CreateTask() {
             <div>
               <h3 className="font-semibold">Task Title</h3>
               <input
-              value={title}
+              value={taskTitle}
               onChange={(e)=>{setTitle(e.target.value)}}
                 type="text"
                 placeholder="Make A UI Design"
@@ -42,7 +60,7 @@ function CreateTask() {
             <div>
               <h3 className="font-semibold">Due Date</h3>
               <input
-              value={date}
+              value={taskDate}
               onChange={(e)=>{setDate(e.target.value)}}
                 type="date"
                 className="w-full p-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-300"
@@ -50,10 +68,10 @@ function CreateTask() {
             </div>
 
             <div>
-              <h3 className="font-semibold">Employee Name</h3>
+              <h3 className="font-semibold">AssignTo</h3>
               <input
-              value={empname}
-              onChange={(e)=>{setEmpname(e.target.value)}}
+              value={asignTo}
+              onChange={(e)=>{setAsignTo(e.target.value)}}
                 type="text"
                 placeholder="Enter employee name"
                 className="w-full p-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-300"
@@ -63,8 +81,8 @@ function CreateTask() {
             <div>
               <h3 className="font-semibold">Category</h3>
               <input
-              value={categ}
-              onChange={(e)=>{setCateg(e.target.value)}}
+              value={category}
+              onChange={(e)=>{setCategory(e.target.value)}}
                 type="text"
                 placeholder="Design, Dev, etc."
                 className="w-full p-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-300"
@@ -76,7 +94,7 @@ function CreateTask() {
           <div>
             <h3 className="font-semibold">Description</h3>
             <textarea
-             value={desc}
+             value={taskDescription}
              onChange={(e)=>{setDesc(e.target.value)}}
               className="w-full p-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-300"
               rows="4"

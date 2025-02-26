@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../Context/ContextProvider';
 
 function AllTask() {
-  const userContext = useContext(AuthContext);
+  const [userdata, setUserdata] = useContext(AuthContext);
 
   // Function to determine the box color based on task counts
   const getBoxColor = (taskCounts) => {
@@ -29,7 +29,7 @@ function AllTask() {
 
       {/* Grid Layout for Users */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {userContext.employees.map((user, idx) => {
+        {userdata.map((user, idx) => {
           const boxColor = getBoxColor(user.taskCounts); // Get the box color based on task counts
           const fontSize = getFontSize(user.taskCounts); // Get the font size based on task counts
           

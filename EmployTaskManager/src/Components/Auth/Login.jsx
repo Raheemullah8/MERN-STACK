@@ -6,8 +6,6 @@ function Login({handleLogin}) {
   
 const formHandler = (e)=>{
 e.preventDefault();
-console.log(email)
-console.log(password)
 handleLogin(email,password)
 setEmail("")
 setPassword("")
