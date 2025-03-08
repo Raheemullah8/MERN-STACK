@@ -6,11 +6,9 @@ dotenv.config();
 const app = express();
 
 const userRoute = require('./Routes/user.route');
+const indexRoute = require('./Routes/index.route');
 const connectoDb = require('./config/DB')
 connectoDb();
-app.get("/",(req,res)=>{
-    res.send("hello")
-})
 
 
 app.set("view engine", "ejs");
@@ -21,5 +19,5 @@ app.use(cookieparser())
 
 
 app.use('/user',userRoute)
-
+app.use('/',indexRoute)
 app.listen(3000,()=>{ console.log("Server is Connect")})

@@ -67,9 +67,10 @@ const Login = async (req, res) => {
             { userid: user._id, username: user.username, email: user.email },
             process.env.JWT_KEY
         );
-
+        res.cookie("token", token);
         // Respond with user data and token
         res.json({
+            
             msg:"user Login sucessFull",
             token
         });

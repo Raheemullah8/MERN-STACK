@@ -1,13 +1,13 @@
 const express = require('express');
 const { body } = require('express-validator');
-const { Register,Login} = require('../middleware/Auth');
+const { Register,Login} = require('../controller/Auth');
 
 
 
 const router = express.Router();
 
 router.get('/register', (req, res) => {
-    res.render('index');
+    res.render('register');
 });
 
 router.post('/register',
